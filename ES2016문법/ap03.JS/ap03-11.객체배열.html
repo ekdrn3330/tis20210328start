@@ -60,3 +60,34 @@
         </div>
     </body>
 </html>
+
+
+
+<script>
+    // Object Arrary 생성
+    var objarray = [
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
+    ];
+    console.log(objarray);
+
+    // objarray 에 { text: 'Four', value: 'D' } 를 추가하시오.
+    objarray[objarray.length] = { text: 'Four', value: 'D' }
+    console.log(objarray);
+
+    // objarray 에서 { text: 'Two', value: 'B' } 를 { text: '2', value: '2' } 로 바꾸시오.
+    objarray[2].name = 2
+    objarray[2].value = 2
+    console.log(objarray);
+
+    // objarray 에서 { text: 'Three', value: 'C' } 를 삭제하시오.
+    delete objarray[2];
+    console.log(objarray);
+
+    // objarray 에서 text의 값이 'One' 인 객체들을 찾으시오
+    var objarrayfilter = objarray.filter( function(item, index, array){
+        return item.text ==='One';
+    });
+    console.log(objarrayfilter);
+</script>

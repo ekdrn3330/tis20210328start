@@ -47,8 +47,8 @@
             Vue.js 에서 이벤트 핸들러에 매개변수를 넘기는 방법. <br>
             event.target.dataset 을 사용하여 접근.
         </p>
-        <div>{{ sumInput }}씩 증가: {{sum10}}</div>
-        <button v-on:click="clickBtn10" data-num="10">{{ sumInput }}씩 증가</button>
+        <div>{{ computedNumInput }}씩 증가: {{sum10}}</div>
+        <button v-on:click="clickBtn10" v-bind:data-num="computedNumInput">{{ computedNumInput }}씩 증가</button>
         <hr />
     </div>
 
@@ -84,9 +84,13 @@
             clickBtn10: function(event) {
                 console.log(event.target);
                 //debugger;
-                //var num = event.target.dataset.num // data-num='10'
-                var num = this.$data.sumInput
-                this.$data.sum10 = this.$data.sum10 +num
+                var num = event.target.dataset.num // data-num='10'
+                this.$data.sum10 = this.$data.sum10 +Number(num)
+            }
+        },
+        computed: {
+            computedNumInput: function() {
+                return this.$data.numInput ? this.$data.numInput : 10;
             }
         },
     });

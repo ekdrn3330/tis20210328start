@@ -30,11 +30,11 @@
     </xmp>
     <hr>
 
-    <div>
-        {{ message }}, app1
+    <div id="app1">
+        {{ message }}, app1,
     </div>
 
-    <div>
+    <div id="app2">
         {{ message }}, app2
     </div>
 
@@ -42,8 +42,39 @@
 
 </html>
 
+    <!-- vue 플러그인 임포트   -->
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+    <script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js"> /* vuex 플러그인 임포트 */</script>
+    <script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"> /* axios 플러그인 임포트 */</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery 플러그인 임포트 */</script>
+    <script>
+        new Vue({
+            /* edtmc^2w */
+            el: "#app2",
+            data: {
+                message: '실습 완성 축하!!!!!'
+            },
+            //template: ``,
+            methods: {
 
-    
+            },
+            components: {
+                /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
 
-    
-<!-- vue 플러그인 임포트   -->
+            },
+            computed: {
+
+            },
+            watch: {
+
+            },
+            mounted: function() {
+                console.log("mounted");
+            },
+            updated: function() {
+                console.log("updated");
+            },
+        });
+    </script>
+

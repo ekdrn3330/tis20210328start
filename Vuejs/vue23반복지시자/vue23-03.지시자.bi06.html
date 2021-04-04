@@ -55,13 +55,57 @@
                 </tr>
             </tbody>
         </table>
+        이름<input v-model:value="name">
+        전화번호<input v-model:value="tel">
+        주소<input v-model:value="address">
+        <button v-on:click="btnclick">추가</button>
     </div>
 
 
-    
+
 
 </body>
 
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            contacts: [
+                {name:'혜리', tel:'010-1234-5678', address:'혜리'},
+                {name:'설현', tel:'010-2345-6789', address:'설현'}
+            ],
+            name: null,
+            tel: null,
+            address: null
+        },
+        //template: ``,
+        methods: {
+            btnclick: function(event) {
+                //this.$data.contacts[this.$data.contacts.length] = {name:'btn', tel:'click', address:'test'}
+                this.$set(this.$data.contacts, this.$data.contacts.length, {name:this.$data.name, tel:this.$data.tel, address:this.$data.address})
+            }
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>

@@ -228,8 +228,8 @@
     <xmp>
     객체 배열과 v-for 지시자를 이용하여 드랍 메뉴를 만들어 본다.
     v-for 지시자 설정 방법을 반복하여 실습한다.
-    
-    template 예시) 
+
+    template 예시)
     <li v-for="(mainitem, i) in mainitems" v-bind:key="i">
         <a href="#">{{mainitem.text}}</a>
         <ul>
@@ -238,7 +238,7 @@
             </li>
         </ul>
     </li>
-    
+
     </xmp>
     <h2>CSS 로 구현된 드랍 메뉴</h2>
     <div>
@@ -300,9 +300,41 @@
         </ul>
     </div>
 
-    
+    <div id="app"></div>
+
 </body>
 
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "",
+        data: {
+
+        },
+        //template: ``,
+        methods: {
+
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>

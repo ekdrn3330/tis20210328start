@@ -159,6 +159,18 @@
                 this.$set(this.$data, 'img_image3', event.target.href) //가운데 배열이면 숫자 객체면 문자
                 event.preventDefault(); // 이벤트 취소
                 event.stopPropagation(); // 이벤트 취소
+            },
+            spanmouseover: function(e) {
+                e.target.style.background = 'yellow'
+            },
+            spanmousedown: function(e) {
+                e.target.style.background = 'blue'
+            },
+            spanmouseup: function(e) {
+                e.target.style.background = 'pink'
+            },
+            spanmouseout: function(e) {
+                e.target.style.background = 'red'
             }
         },
         components: {
@@ -169,5 +181,6 @@
 
         },
     });
+
 
 </script>

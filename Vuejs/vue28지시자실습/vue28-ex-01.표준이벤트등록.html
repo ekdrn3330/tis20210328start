@@ -149,6 +149,8 @@
         el: "#app",
         data: {
             img_image3: null,
+            img_but1: '../images/but1.gif',
+            img_swap: '../images/img_swap_off.png',
         },
         //template: ``,
         methods: {
@@ -171,6 +173,14 @@
             },
             spanmouseout: function(e) {
                 e.target.style.background = 'red'
+            },
+            imageover: function(e) {
+                this.$data.img_but1 = '../images/but2.gif',
+                this.$data.img_swap = '../images/img_swap_on.png'
+            },
+            imageout: function(e) {
+                this.$data.img_but1 = '../images/but1.gif',
+                this.$data.img_swap = '../images/img_swap_off.png'
             }
         },
         components: {
@@ -181,6 +191,4 @@
 
         },
     });
-
-
 </script>

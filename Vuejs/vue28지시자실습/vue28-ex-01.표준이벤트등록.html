@@ -151,6 +151,7 @@
             img_image3: null,
             img_but1: '../images/but1.gif',
             img_swap: '../images/img_swap_off.png',
+            img_select: null,
         },
         //template: ``,
         methods: {
@@ -175,13 +176,31 @@
                 e.target.style.background = 'red'
             },
             imageover: function(e) {
-                this.$data.img_but1 = '../images/but2.gif',
-                this.$data.img_swap = '../images/img_swap_on.png'
+                // this.$data.img_but1 = '../images/but2.gif'
+                // this.$data.img_swap = '../images/img_swap_on.png'
+                this.$set(this.$data, 'img_but1', '../images/but2.gif')
+                this.$set(this.$data, 'img_swap', '../images/img_swap_on.png')
             },
             imageout: function(e) {
-                this.$data.img_but1 = '../images/but1.gif',
-                this.$data.img_swap = '../images/img_swap_off.png'
+                // this.$data.img_but1 = '../images/but1.gif'
+                // this.$data.img_swap = '../images/img_swap_off.png'
+                this.$set(this.$data, 'img_but1', '../images/but1.gif')
+                this.$set(this.$data, 'img_swap', '../images/img_swap_off.png')
+            },
+            selectchange: function(e) {
+                console.log(e.target.value);
+                // this.$data.img_select = e.target.value
+                this.$set(this.$data, 'img_select', e.target.value)
+            },
+            inputfocus: function(e) {
+                console.log('inputblur');
+                e.target.style.outline = '2px dotted red';
+            },
+            inputblur: function(e) {
+                console.log('inputfocus');
+                e.target.style.outline = 'none';
             }
+
         },
         components: {
             /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */

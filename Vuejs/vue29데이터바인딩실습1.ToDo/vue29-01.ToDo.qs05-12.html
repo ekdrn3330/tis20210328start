@@ -340,25 +340,33 @@
                         }
                         // return preItem.id > curItem.id ? preItem : curItem
                     })
-                }
+                };
 
                 var todo = {
                     id: maxObj.id + 1,
                     done: false,
                     todo: this.$data.newTodoItem,
-                }
+                };
                 // this.$data.todoItems.push( obj );
                 // this.#data.todoItems[ this.$data.todoItems ] = obj;
-                this.$set( this.$data.todoItems, this.$data.todoItems.length, obj );
+                this.$set( this.$data.todoItems, this.$data.todoItems.length, todo );
+
+                // input 태그의 입력값 지우기
+                // this.$data.newTodoItem = '';
+                this.$set( this.$data, 'newTodoItem', '' );
             },
             doneToggle: function(id, index) {
-
+                //
+                // this.$data.todoItems[index].done = !this.$data.todoItems[index].done;
+                this.$set( this.$data.todoItems[index], 'done', !this.$data.todoItems[index].done)
             },
             removeTodo: function(id, index) {
 
             },
             clearAll: function(e) {
-
+                // 전체 삭제
+                // this.$data.todoItems = [];
+                this.$set( this.$data, 'todoItems' , [] );
             }
         },
         components: {

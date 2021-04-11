@@ -109,10 +109,7 @@
         <br>
 
         <component-header></component-header>
-        <component-content>
-            <component-aside></component-aside>
-            <component-content-list></component-content-list>
-        </component-content>
+        <component-content></component-content>
         <component-footer></component-footer>
     </div>
 
@@ -127,59 +124,52 @@
 <script>
 
     var componentHeader = {
-        /* pdtmc^2w */
-        props: [] ,
         template: `
-        <header>
-            Header
-        </header>
-        `,
-    };
-
-    var componentContent = {
-        /* pdtmc^2w */
-        props: [] ,
-        template: `
-        <div id="content">
-            <p>Content</p>
-            <component-aside></component-aside>
-            <component-content-list></component-content-list>
-        </div>
-        `,
-    };
-
-    var componentFooter = {
-        /* pdtmc^2w */
-        props: [] ,
-        template: `
-        <footer>
-            Footer
-        </footer>
+            <header>
+                Header
+            </header>
         `,
     };
 
     var componentAside = {
-        /* pdtmc^2w */
-        props: [] ,
         template: `
-        <aside>
-            Aside
-        </aside>
+            <aside>
+                Aside
+            </aside>
         `,
     };
 
     var componentContentList = {
-        /* pdtmc^2w */
-        props: [] ,
         template: `
-        <div id="content-list">
-            List
-        </div>
+            <div id="content-list">
+                List
+            </div>
+        `,
+    };
+
+    var componentContent = {
+        template: `
+            <div id="content">
+                <p>Content</p>
+                <component-aside></component-aside>
+                <component-content-list></component-content-list>
+            </div>
+        `,
+        components:{
+            'component-aside':componentAside,
+            'component-content-list':componentContentList,
+        }
+    };
+
+    var componentFooter = {
+        template: `
+            <footer>
+                Footer
+            </footer>
         `,
     };
 
     new Vue({
-        /* edtmc^2w */
         el: "#app",
         components: {
             /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */

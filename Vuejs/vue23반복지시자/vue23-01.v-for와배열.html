@@ -87,9 +87,7 @@
                 ];
             </p>
             <select name="" id="">
-                <option v-for="(option,index) in options"
-                        v-bind:key="index"
-                        v-bind:value="option.value">
+                <option v-for="(option,index) in options" v-bind:key="index" v-bind:value="option.value">
                     {{ option.text }} : {{option.value}}
                 </option>
             </select>

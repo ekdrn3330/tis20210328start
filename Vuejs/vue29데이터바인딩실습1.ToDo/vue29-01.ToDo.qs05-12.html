@@ -356,12 +356,16 @@
                 this.$set( this.$data, 'newTodoItem', '' );
             },
             doneToggle: function(id, index) {
-                //
                 // this.$data.todoItems[index].done = !this.$data.todoItems[index].done;
                 this.$set( this.$data.todoItems[index], 'done', !this.$data.todoItems[index].done)
             },
             removeTodo: function(id, index) {
+                // 한개 삭제
+                this.$data.todoItems.splice( index, 1 );
 
+                // 이벤트 취소:
+                // event.stopPropagation();
+                // event.preventDefault();
             },
             clearAll: function(e) {
                 // 전체 삭제

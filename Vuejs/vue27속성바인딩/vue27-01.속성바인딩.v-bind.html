@@ -77,8 +77,112 @@
 
     <hr>
 
+    <script type="text/x-template" id="template1">
+        <h2>v-bind 연습</h2>
+        <div id="app1">
+            <p v-bind:id="idA">
+                <button v-on:click="idA">클릭</button>
+                아이디 바인딩
+            </p>
+            <p v-bind:class="classA">
+                <button v-on:click="clickBindClass">클릭</button>
+                클래스 바인딩
+            </p>
+            <p v-bind:style="styleA">
+                <button v-on:click="clickBindStyle">클릭</button>
+                스타일 바인딩
+            </p>
+            <p>
+                <button v-on:click="clickBindValue">클릭</button>
+                <input id="a" type="text" v-bind:value="message">
+            </p>
+            <p>
+                <button v-on:click="clickBindSrc">클릭</button>
+                <img v-bind:src="imagePath" />
+            </p>
+        </div>
+        <hr>
+        </div>
+    </script>
 </body>
 
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app1",
+        data: {
+            idA: null,
+            classA: null,
+            styleA: null,
+            message: null,
+            imagePath: null,
+        },
+        template: `#template1`,
+        methods: {
+            clickBindId: function(e){
+                // this.$data.idA = '클릭후 id값'
+                this.$set(this.$data, 'idA', '클릭후 id값');
+            },
+            clickBindClass: function(e){
+                // this.$data.classA = 'container';
+                this.$set(this.$data, 'classA', 'container');
+            },
+            clickBindStyle: function(e){
+                /*
+                {
+                    color: red;
+                    font-weight: bold;
+                    font-size: 20pt;
+                }
+                */
+               // 방법1.
+               this.$data.styleA = {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: "20pt"
+               }
+               //방법2.
+               this.$data.styleA.color: "red";
+
+               this.$set(
+                   this.$data,
+                   'styleA',
+                   {
+                    color: "red",
+                    fontWeight: "bold",
+                    fontSize: "20pt"
+                   }
+               )
+            },
+            clickBindValue: function(e){
+                this.$data.message = 'v-bind 지시자';
+                this.$set(this.$data, 'message', 'v-bind 지시자');
+            },
+            clickBindSrc: function(e){
+                this.$data.imagePath = "../images/content_twitter.png";
+                this.$set(this.$data, 'imagePath', "../images/content_twitter.png");
+            },
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>

@@ -296,3 +296,87 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">/* vue 플러그인 임포트 */</script>
+<script>
+    var vm = new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            newTodoItem: null,
+            showModal: null,
+            todoItems: [
+                { id: 1, todo: "영화보기", done: false },
+                { id: 2, todo: "주말 산책", done: true },
+                { id: 3, todo: "ES6 학습", done: false },
+                { id: 4, todo: "잠실 야구장", done: false }
+            ],
+        },
+        //template: ``,
+        methods: {
+            checked: function(done) {
+                if(done){
+                    return "checked" // 또는 {checked: true}
+                }else{
+                    return null; // 또는 {checked: false}
+                }
+            },
+            addTodo: function(e){
+                console.log(e.target);
+
+                var maxObj = null;
+                if(this.$data.todoItems.length == 0) {
+                    maxObj = {
+                        id: 0,
+                    }
+                }
+                else {
+                    maxObj = this.$data.todoItems.reduce( (preItem, curItem, index, array)=>{
+                        // 최대 id 값을 갖고 있는 item을 반환
+                        if(preItem.id > curItem.id){
+                            return preItem;
+                        }
+                        else {
+                            return curItem;
+                        }
+                        // return preItem.id > curItem.id ? preItem : curItem
+                    })
+                }
+
+                var todo = {
+                    id: maxObj.id + 1,
+                    done: false,
+                    todo: this.$data.newTodoItem,
+                }
+                // this.$data.todoItems.push( obj );
+                // this.#data.todoItems[ this.$data.todoItems ] = obj;
+                this.$set( this.$data.todoItems, this.$data.todoItems.length, obj );
+            },
+            doneToggle: function(id, index) {
+
+            },
+            removeTodo: function(id, index) {
+
+            },
+            clearAll: function(e) {
+
+            }
+        },
+        components: {
+            /* 컴포넌트 등록. 예시) "태그명" : 컴포넌트명 */
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+
+</script>

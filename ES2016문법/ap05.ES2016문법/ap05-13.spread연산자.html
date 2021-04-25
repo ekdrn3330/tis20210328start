@@ -41,5 +41,34 @@
 
 </html>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script type="text/babel">
+
+    //객체에서 spread 연산자와 분해할당을 사용하는 예제를 작성하여 본다.
+    const car1 = {
+        type:'t',
+        color:'S',
+        model:'2017',
+    }
+
+    const car2 = {
+        type:'t2',
+        color:'S2',
+        model:'2019',
+    }
+
+    // const {type} = car;
+    // console.log(type); // t
+
+    // {type} = {...car1, ...car2}
+    const func = function( {type} ){
+        console.log(type); // t
+    }
+    func( {...car1, ...car2} );
+
+</script>
+
 
 

@@ -41,7 +41,24 @@
     /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
 </script>
 <script type="text/babel">
+    const east = ["U", "K", "T"];
+    const west = ["N", "C", "G"];
+    const countries = [...east, ...west];
+    console.log(countries);
 
+    let [city1, ...cityrest] = [...east, ...west];
+    console.log(city1);
+    console.log(cityrest);
+
+    let lakes = ["경포호", "화진포", "송지호", "청초호"];
+    let [first, ...rest] = lakes;
+    console.log(first);
+    console.log(rest);
+
+    const name = ["장동건", "송혜교", "조인성", "한가인"];
+    const [actor, ...otherActor] = name;
+    console.log(actor); //장동건
+    console.log(otherActor); //송혜교, 조인성, 한가인
 </script>
 
 

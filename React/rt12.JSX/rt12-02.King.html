@@ -47,6 +47,59 @@
 <!-- react 플러그인 include   -->
 <!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* 자바스크립트로 컴파일러. ES6-->ES5, JSX-->ES5 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js">
+    /* import React, { Component, PureComponent } from "react" */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js">
+    /* import ReactDOM from "react-dom" */
+</script>
+<script type="text/babel">
+    //import React, {Component, PureComponent, Fragment} from "react";
+    //import Redux from "redux";
+    //import ReactRedux, {Provider} from "react-redux";
+    //import {BrowserRouter,Switch,Router,Route,IndexRoute,Link,IndexLink,NavLink} from "react-router-dom";
+    //import ReactDOM from "react-dom";
+
+    console.log(React);
+
+    class King extends React.Component {
+
+        render() { // JSX로 화면 만들기
+            return (
+                <h3>
+                    {this.props.name}
+                    <br/>
+                    {this.props.children}
+                </h3>
+            )
+        }
+    };
+    //export default king;
+
+    ReactDOM.render(
+        <div>
+            <King name="세종대왕">
+                <span>a</span>
+            </King>
+            <King name="이순신">
+                <span>b</span>
+            </King>
+            <King name="광개토">
+                <span>c</span>
+            </King>
+            <King name="왕건">
+                <span>d</span>
+            </King>
+        </div>
+        ,
+        document.getElementById("app")
+    )
+</script>
+
+
 
 
 

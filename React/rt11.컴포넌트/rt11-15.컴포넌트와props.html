@@ -121,11 +121,11 @@
         }
     };
     //export default rt11-15.컴포넌트와props;
-
+    const arr = [1, 2, 3, 4, 5]
     ReactDOM.render(
         <React.Fragment>
         {
-            [1, 2, 3, 4, 5].map((value, index) => {
+            arr.map((value, index) => {
                 return <HelloWorld index={ value }></HelloWorld>
             })
         }

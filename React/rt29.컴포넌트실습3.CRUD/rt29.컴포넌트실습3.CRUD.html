@@ -520,16 +520,29 @@
             }
 
             var formEdit = (
-                <tr key={item.id} className={strong}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.power}</td>
-                    <td>
-                        <button onClick={this.doDel} >Del</button>
-                        <button onClick={this.doUp}  >Power Up</button>
-                        <button onClick={this.doDown}>Power Down</button>
-                        <button onClick={this.doEdit}>Edit</button>
-                    </td>
+                <tr key={item.id} className={"strong"}>
+                        <td>{item.id}</td>
+                        <td>
+                            <input
+                                type="text"
+                                name="name"
+                                ref={this.refUserName }
+                                defaultValue={item.name}
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                name="power"
+                                ref={this.refUserPower }
+                                defaultValue={item.power}
+                            />
+                        </td>
+                        <td>
+                            <button onClick={this.doUp}>Power Up</button>
+                            <button onClick={this.doDown}>Power Down</button>
+                            <button onClick={this.doSave}>Save</button>
+                        </td>
                 </tr>
             )
 

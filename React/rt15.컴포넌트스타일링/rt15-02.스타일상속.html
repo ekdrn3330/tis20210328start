@@ -81,6 +81,19 @@
                 padding: "0px",
                 fontFamily: "sans-serif",
                 color: "white",
+            },
+            get styleEmphasis() {
+                return {
+                    ...this.styleH2,
+                    fontSize: "38px",
+                }
+            },
+            get styleP() {
+                return {
+                    ...this.styleH2,
+                    fontSize: "17px",
+                    opacity: "0.5",
+                }
             }
         }
         func = {
@@ -116,8 +129,12 @@
             return (
                 <div id="app">
                     <div style={this.style.styleDiv}>
-                        <h1 style={this.style.stylH1}>2700</h1>
-                        <h2 style={this.style.stylH2}>번개</h2>
+                        <h1 style={this.style.styleH1}>2700</h1>
+                        <h2 style={this.style.styleH2}>번개</h2>
+                        <h2 style={this.style.styleEmphasis}>강조</h2>
+                        <p style={this.style.styleP}>
+                            since you loaded this example
+                        </p>
                     </div>
                 </div>
             )

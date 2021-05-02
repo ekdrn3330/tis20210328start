@@ -27,7 +27,7 @@
             3. array.filter() 사용법
 
 
-        array 에서 최대값 id 찾기
+        object array 에서 최대값 id 찾기
             방법 1. reduce() 메서드 사용해서 최대값을 찾는 방법
                 var maxObj = array.reduce( function(prev, next){
                     return prev.id > next.id ? prev:  next  // 최대값 id가 있는 객체
@@ -288,6 +288,8 @@
             // func 에 정의한 메서드는 반드시 this bind 처리해야 한다.
 
             // ref 만들기. 예시) this.inputref = React.createRef()
+            this.refUserName = React.createRef();
+            this.refUserPower = React.createRef();
 
         }
         componentDidMount() {
@@ -305,6 +307,12 @@
             // 이벤트 핸들러는 화살표 함수로 만들면 this bind()를 생략해도 된다
             console.log(event.target)
 
+            if(this.refUserName.current.value.trim() == ''){
+                alert('이름을 입력하세요')
+                this.refUserName.current.focus()
+                event.preventDefault() // 이벤트 버블링 취소
+                return false // 함수 실행 종료
+            }
             // ref 를 사용하여 현재 입력된 값을 가져온다.
             //const name = this.refUserName.current.value
             //const power = Number(this.refUserPower.current.value)
@@ -426,7 +434,7 @@
         static propsTypes = {  /* props의 프로퍼티 타입 설정 */ }
         state = {
             // 상태값(변수)을 정의한다.
-
+            isEditMode: false,
         }
         style = {
             // 컴포넌트 내부에서 사용할 인라인 스타일을 정의한다.
@@ -445,6 +453,8 @@
             // func 에 정의한 메서드는 반드시 this bind 처리해야 한다.
 
             // ref 만들기. 예시) this.inputref = React.createRef()
+            this.refUserName = React.createRef();
+            this.refUserPower = React.createRef();
 
         }
         componentDidMount() {
@@ -473,13 +483,43 @@
             //부모 콜백 메서드 호출. CrudApp.func.doDel()
             this.props.doDown(item);
         }
+        doEdit= (event)=>{
+            debugger;
+            const {item} = this.props; // <==> const item = this.props.item;
+            // formEdit가 나오게 설정을 변경한다.
+            this.setState({
+                ...this.state,
+                isEditMode: !this.state.isEditMode
+            })
+        }
+        doSave = (event)=>{
+            const {item} = this.props; // <==> const item = this.props.item;
+
+                // ref 를 사용하여 현재 입력된 값을 가져온다.
+                //const name = this.refUserName.current.value
+                //const power = Number(this.refUserPower.current.value)
+                const newitem = {
+                    id: item.id,
+                    name: this.refUserName.current.value,
+                    power: Number(this.refUserPower.current.value),
+                }
+
+            //부모 콜백 메서드 호출. CrudApp.func.doSave()
+            this.props.doSave(newitem);
+
+            this.setState({
+                ...this.state,
+                isEditMode: !this.state.isEditMode
+            })
+        }
         render() { // JSX로 화면 만들기
             const {item} = this.props; // <==> const item = this.props.item;
             let strong = null;
             if( item.power >= 300 ){
                 strong = "strong";
             }
-            return (
+
+            var formEdit = (
                 <tr key={item.id} className={strong}>
                     <td>{item.id}</td>
                     <td>{item.name}</td>
@@ -492,6 +532,26 @@
                     </td>
                 </tr>
             )
+
+            var formView = (
+                <tr className={strong}>
+                    <td>{item.id}</td>
+                    <td>{item.name}</td>
+                    <td>{item.power}</td>
+                    <td>
+                        <button onClick={this.doDel} >Del</button>
+                        <button onClick={this.doUp}  >Power Up</button>
+                        <button onClick={this.doDown}>Power Down</button>
+                        <button onClick={this.doEdit}>Edit</button>
+                    </td>
+                </tr>
+            )
+debugger;
+            if ( this.state.isEditMode) {
+                return formEdit
+            }else{
+                return formView
+            }
         }
     };
 
@@ -519,6 +579,29 @@
             // func에는 자식 컴포넌트에 넘길 메서드만 작성한다.
             // 왜 자식에게 부모 메서드를 넘기나? 부모의 상태값을 변경하기 위해서.
             doIns(item){
+                let maxObj = null;
+                if( this.state.items.length > 0 ){
+                        maxObj = this.state.items.reduce( function(prev, next){
+                        return prev.id > next.id ? prev:  next  // 최대값 id가 있는 객체
+                    })
+                }
+                else {
+                    maxObj = {
+                        id: 0,
+                    }
+                }
+
+                const newitem = {
+                    id: maxObj.id +1, //unique id 만들기
+                    ...item,
+                }
+                // this.state.items.push(newitem);
+                const newitems = [ ...this.state.items, newitem ]; // 새로운 object array 만들기
+
+                this.setState({
+                    ...this.state,
+                    items: newitems,
+                });
 
             },
             doDel(item){
@@ -557,7 +640,16 @@
                 });
             },
             doSave(item){ // doEdit 대신 doSave 만들었다.
-
+                const newitems = this.state.items.map( (element, index) => {
+                    if( element.id === item.id ){
+                        return item;
+                    }
+                    return element;
+                } )
+                this.setState({
+                    ...this.state,
+                    items:newitems,
+                });
             },
         }
         constructor(props) {

@@ -115,35 +115,47 @@
           // func에 정의된 메서드는 반드시 constructor에서 this를 bind() 처리해야 한다.
           // func에는 자식 컴포넌트에 넘길 메서드만 작성한다.
           // 왜 자식에게 부모 메서드를 넘기나? 부모의 상태값을 변경하기 위해서.
-
+          addCounter (){
+              this.setState({
+                counter: this.state.counter +1
+              })
+          },
+          subCounter (){
+              this.setState({
+                counter: this.state.counter -1
+              })
+          },
       }
       constructor(props) {
           super()
           // this 바인딩. 예시) this.handler = this.handler.bind(this)
           // func 에 정의한 메서드는 반드시 this bind 처리해야 한다.
+          this.func.addCounter=this.func.addCounter.bind(this)
+          this.func.subCounter=this.func.subCounter.bind(this)
 
           // ref 만들기. 예시) this.inputref = React.createRef()
 
       }
+
       addCounter = (event)=>{
           // 이벤트 핸들러는 화살표 함수로 만들면 this bind()를 생략해도 된다
           console.log(event.target)
-          //this.state.counter = this.state.counter +1
-          this.setState({
-            counter: this.state.counter +1
-          })
+          this.func.addCounter()
       }
       subCounter = (event)=>{
           // 이벤트 핸들러는 화살표 함수로 만들면 this bind()를 생략해도 된다
           console.log(event.target)
-          //this.state.counter = this.state.counter -1
-          this.setState({
-            counter: this.state.counter -1
-          })
+          this.func.subCounter()
       }
       render() { // JSX로 화면 만들기
           return (
-
+            <div id="app" className="component-parent">
+                Parent counter : {this.state.counter} <br />
+                <button name="parent" onClick={this.addCounter}>+</button>
+                <button name="parent" onClick={this.subCounter}>-</button>
+                <p></p>
+                <Child {...this.state} {...this.func} ></Child>
+            </div>
           )
       }
   };
@@ -176,31 +188,17 @@
           // ref 만들기. 예시) this.inputref = React.createRef()
 
       }
-      addCounter = (event)=>{
+      handler = (event)=>{
           // 이벤트 핸들러는 화살표 함수로 만들면 this bind()를 생략해도 된다
           console.log(event.target)
-          this.props.addCounter(event)
-      }
-      subCounter = (event)=>{
-          // 이벤트 핸들러는 화살표 함수로 만들면 this bind()를 생략해도 된다
-          console.log(event.target)
-          this.props.subCounter(event)
       }
       render() { // JSX로 화면 만들기
           return (
             <div class="component-child">
                 Child counter : {this.props.counter} <br />
-                <button name="child" onClick={this.addCounter}>+</button>
-                <button name="child" onClick={this.subCounter}>-</button>
-                <p></p>
-
-                <ComponentChild
-                                {...this.state}
-                                {...this.func}
-                >
-                </ComponentChild>
+                <button name="child" onClick="addCounter">+</button>
+                <button name="child" onClick="subCounter">-</button>
             </div>
-
           )
       }
   };
@@ -211,5 +209,6 @@
     document.getElementById("app")
   )
 </script>
+
 
 

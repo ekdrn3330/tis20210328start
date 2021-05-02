@@ -117,8 +117,12 @@
             console.log(event.target)
         }
         render() { // JSX로 화면 만들기
+            const style1 = {
+                fontSize:"80pt",
+            }
             return (
-                <div>
+                //<div style={style1}>
+                <div style={{fontSize:"80pt",}}>
                     {this.state.hms}
                 </div>
             )

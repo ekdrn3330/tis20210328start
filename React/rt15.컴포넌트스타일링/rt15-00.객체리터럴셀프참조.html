@@ -36,3 +36,20 @@
 </body>
 
 </html>
+<script>
+    var lit = {
+            a: 'a',
+            b: this.a + 'b'
+        }
+        console.log(lit.a); // "a"
+        console.log(lit.b); // "ab"
+
+    var lit2 = {
+        a: "a",
+        get b() {
+            return this.a + "b";
+        }
+    }
+    console.log(lit2.a);
+    console.log(lit2.b);
+</script>
